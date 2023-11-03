@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,56 +12,66 @@ public class AgeEqualsTest {
 
 	@Test
 	public void testGetYearsString() {
-		new AgeCalculator();
+		AgeCalculator ageCalculator = new AgeCalculator();
 
-		Assertions.assertEquals("год", AgeCalculator.getYearsString(1L));
-		Assertions.assertEquals("год", AgeCalculator.getYearsString(21L));
-		Assertions.assertEquals("лет", AgeCalculator.getYearsString(14L));
-		Assertions.assertEquals("года", AgeCalculator.getYearsString(2L));
-		Assertions.assertEquals("лет", AgeCalculator.getYearsString(22213L));
-		Assertions.assertEquals("лет", AgeCalculator.getYearsString(5L));
-		Assertions.assertEquals("лет", AgeCalculator.getYearsString(25L));
+		Assertions.assertEquals("год", ageCalculator.getYearsString(1L));
+		Assertions.assertEquals("год", ageCalculator.getYearsString(21L));
+		Assertions.assertEquals("лет", ageCalculator.getYearsString(14L));
+		Assertions.assertEquals("года", ageCalculator.getYearsString(2L));
+		Assertions.assertEquals("лет", ageCalculator.getYearsString(22213L));
+		Assertions.assertEquals("лет", ageCalculator.getYearsString(5L));
+		Assertions.assertEquals("лет", ageCalculator.getYearsString(25L));
 	}
 
 	@Test
 	public void testGetMonthsString() {
-		new AgeCalculator();
-		assertEquals("месяц", AgeCalculator.monthsString(1));
-		assertEquals("месяца", AgeCalculator.monthsString(2));
-		assertEquals("месяца", AgeCalculator.monthsString(3));
-		assertEquals("месяца", AgeCalculator.monthsString(4));
-		assertEquals("месяцев", AgeCalculator.monthsString(5));
-		assertEquals("месяцев", AgeCalculator.monthsString(6));
-		assertEquals("месяцев", AgeCalculator.monthsString(7));
-		assertEquals("месяцев", AgeCalculator.monthsString(8));
-		assertEquals("месяцев", AgeCalculator.monthsString(9));
-		assertEquals("месяцев", AgeCalculator.monthsString(10));
-		assertEquals("месяцев", AgeCalculator.monthsString(11));
-		assertEquals("месяцев", AgeCalculator.monthsString(12));
+		AgeCalculator ageCalculator = new AgeCalculator();
+		assertEquals("месяц", ageCalculator.getMonthsString(1));
+		assertEquals("месяца", ageCalculator.getMonthsString(2));
+		assertEquals("месяца", ageCalculator.getMonthsString(3));
+		assertEquals("месяца", ageCalculator.getMonthsString(4));
+		assertEquals("месяцев", ageCalculator.getMonthsString(5));
+		assertEquals("месяцев", ageCalculator.getMonthsString(6));
+		assertEquals("месяцев", ageCalculator.getMonthsString(7));
+		assertEquals("месяцев", ageCalculator.getMonthsString(8));
+		assertEquals("месяцев", ageCalculator.getMonthsString(9));
+		assertEquals("месяцев", ageCalculator.getMonthsString(10));
+		assertEquals("месяцев", ageCalculator.getMonthsString(11));
+		assertEquals("месяц", ageCalculator.getMonthsString(31));
+		assertEquals("месяца", ageCalculator.getMonthsString(32));
+		assertEquals("месяца", ageCalculator.getMonthsString(1002));
 	}
 
 	@Test
 	public void testGetDayString() {
-		new AgeCalculator();
+		AgeCalculator ageCalculator = new AgeCalculator();
 
-		Assertions.assertEquals("день", AgeCalculator.getDayString(1L));
-		Assertions.assertEquals("дней", AgeCalculator.getDayString(11L));
-		Assertions.assertEquals("дней", AgeCalculator.getDayString(14L));
-		Assertions.assertEquals("дней", AgeCalculator.getDayString(16L));
-		Assertions.assertEquals("день", AgeCalculator.getDayString(21L));
-		Assertions.assertEquals("дня", AgeCalculator.getDayString(2L));
-		Assertions.assertEquals("дня", AgeCalculator.getDayString(22L));
-		Assertions.assertEquals("дней", AgeCalculator.getDayString(5L));
-		Assertions.assertEquals("дней", AgeCalculator.getDayString(25L));
+		Assertions.assertEquals("день", ageCalculator.getDaysString(1L));
+		Assertions.assertEquals("дней", ageCalculator.getDaysString(11L));
+		Assertions.assertEquals("дней", ageCalculator.getDaysString(14L));
+		Assertions.assertEquals("дней", ageCalculator.getDaysString(16L));
+		Assertions.assertEquals("день", ageCalculator.getDaysString(21L));
+		Assertions.assertEquals("дня", ageCalculator.getDaysString(2L));
+		Assertions.assertEquals("дня", ageCalculator.getDaysString(22L));
+		Assertions.assertEquals("дней", ageCalculator.getDaysString(5L));
+		Assertions.assertEquals("дней", ageCalculator.getDaysString(25L));
 	}
 
 	@Test
-	public void testAgeDifferencee() {
-		AgeCalculator ageEquals = new AgeCalculator();
+	public void testCalculateAgeDifference() {
+		AgeCalculator ageCalculator = new AgeCalculator();
 
-		LocalDate dateOne = LocalDate.of(1990, 3, 1);
-		LocalDate dateTwo = LocalDate.of(2020, 1, 1);
+		LocalDate date1 = LocalDate.of(1990, 5, 15);
+		LocalDate date2 = LocalDate.of(1995, 8, 20);
 
-		ageEquals.ageDifferencee(dateOne, dateTwo);
+		int expectedYears = 5;
+		int expectedMonths = 3;
+		int expectedDays = 5;
+
+		Period ageDifference = ageCalculator.calculateAgeDifference(date1, date2);
+
+		Assertions.assertEquals(expectedYears, ageDifference.getYears());
+		Assertions.assertEquals(expectedMonths, ageDifference.getMonths());
+		Assertions.assertEquals(expectedDays, ageDifference.getDays());
 	}
 }
