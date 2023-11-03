@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.pockocmoc","l":"AgeEquals"},{"l":"All Classes","url":"allclasses-index.html"}]

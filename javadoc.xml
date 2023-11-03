@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+	<target name="javadoc">
+		<javadoc access="public" author="true" classpath="target/test-classes"
+			destdir="doc" nodeprecated="false" nodeprecatedlist="false"
+			noindex="false" nonavbar="false" notree="false" source="1.8"
+			sourcefiles="src/main/java/com/pockocmoc/AgeEquals.java"
+			sourcepath="src/main/java:src/test/resources:src/test/java:src/main/resources"
+			splitindex="true" use="true" version="true">
+			<link href="https://docs.oracle.com/en/java/javase/19/docs/api/" />
+		</javadoc>
+	</target>
+</project>
